@@ -68,5 +68,5 @@ class DarkAppColors extends AppColors {
   Color get secondary => Color(0xFF171717);
 
   @override
-  Color get surface => Color(0xFF171717); 
+  Color get surface => Color(0xFF171717);
 }

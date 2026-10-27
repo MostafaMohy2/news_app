@@ -12,8 +12,10 @@ class AppAssets {
   static const String sportsDark = 'assets/images/sport_dark.png';
   static const String technologyLight = 'assets/images/technology_light.png';
   static const String technologyDark = 'assets/images/technology_dark.png';
-  static const String entertainmentLight = 'assets/images/entertainment_light.png';
-  static const String entertainmentDark = 'assets/images/entertainment_dark.png';
+  static const String entertainmentLight =
+      'assets/images/entertainment_light.png';
+  static const String entertainmentDark =
+      'assets/images/entertainment_dark.png';
   static const String healthLight = 'assets/images/helth_light.png';
   static const String healthDark = 'assets/images/helth_dark.png';
   static const String scienceLight = 'assets/images/science_light.png';

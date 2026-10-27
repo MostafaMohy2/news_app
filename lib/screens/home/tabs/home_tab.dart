@@ -7,12 +7,9 @@ import 'package:news_app/core/utils/widget_extensions.dart';
 import 'package:provider/provider.dart';
 
 class HomeTab extends StatelessWidget {
-  final void Function(NewsCategory category)? onCategoryClick;
+  final void Function(NewsCategory category) onCategoryClick;
 
-  const HomeTab({
-    super.key,
-    this.onCategoryClick,
-  });
+  const HomeTab({super.key, required this.onCategoryClick});
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +40,7 @@ class HomeTab extends StatelessWidget {
     NewsCategory category,
     int index,
     BuildContext context,
-    void Function(NewsCategory)? onClick,
+    void Function(NewsCategory) onClick,
   ) {
     final bool isOdd = index % 2 != 0;
 
@@ -52,7 +49,7 @@ class HomeTab extends StatelessWidget {
         InkWell(
           borderRadius: BorderRadius.circular(24),
           onTap: () {
-            onClick?.call(category);
+            onClick(category);
           },
           child: Stack(
             alignment: isOdd ? Alignment.centerLeft : Alignment.centerRight,
@@ -63,8 +60,9 @@ class HomeTab extends StatelessWidget {
                 fit: BoxFit.cover,
               ).clip(24),
               Column(
-                crossAxisAlignment:
-                    isOdd ? CrossAxisAlignment.start : CrossAxisAlignment.end,
+                crossAxisAlignment: isOdd
+                    ? CrossAxisAlignment.start
+                    : CrossAxisAlignment.end,
                 children: [
                   Text(
                     category.categoryName,

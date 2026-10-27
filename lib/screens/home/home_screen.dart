@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/core/models/news_category.dart';
+import 'package:news_app/core/utils/build_context_extensions.dart';
 import 'package:news_app/core/utils/icons_extensions.dart';
 import 'package:news_app/screens/home/tabs/home_tab.dart';
+import 'package:news_app/screens/home/tabs/news_tab.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String route = '/home';
@@ -24,16 +26,29 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(onPressed: () {}, icon: Icons.search_rounded.toIcon),
         ],
       ),
-      drawer: Drawer(),
-      body: selectedCategory == null
-          ? HomeTab(
-              onCategoryClick: (category) {
-                setState(() {
-                  selectedCategory = category;
-                });
+      drawer: Drawer(
+        child: Column(
+          mainAxisAlignment: .center,
+          children: [
+            TextButton(
+              onPressed: () {
+                selectedCategory = null;
+                context.pop();
+                setState(() {});
               },
-            )
-          : const SizedBox(),
+              child: Text('Back to Home'),
+            ),
+          ],
+        ),
+      ),
+      body: selectedCategory == null
+          ? HomeTab(onCategoryClick: (category) => changeCategory(category))
+          : NewsTab(category: selectedCategory!),
     );
+  }
+
+  void changeCategory(NewsCategory category) {
+    selectedCategory = category;
+    setState(() {});
   }
 }

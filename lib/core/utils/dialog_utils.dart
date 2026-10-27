@@ -45,9 +45,9 @@ class DialogUtils {
         actions: [
           if (postActionTitle != null)
             TextButton(
-              onPressed: ()async {
+              onPressed: () async {
                 if (postAction != null) {
-                context.pop();
+                  context.pop();
                   await postAction();
                 }
               },
@@ -55,10 +55,10 @@ class DialogUtils {
             ),
           if (negativeActionTitle != null)
             TextButton(
-              onPressed: ()async {
-                 context.pop();
+              onPressed: () async {
+                context.pop();
                 if (negativeAction != null) {
-                 await  negativeAction();
+                  await negativeAction();
                 }
               },
               child: Text(negativeActionTitle),
