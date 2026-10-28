@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(milliseconds: 400),(){
+    Future.delayed(Duration(milliseconds: 400), () {
       Navigator.pushReplacementNamed(context, HomeScreen.route);
     });
   }
@@ -38,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
               provider.themeMode == ThemeMode.dark
                   ? AppAssets.brandingLight
                   : AppAssets.brandingDark,
-                  width: MediaQuery.of(context).size.width * 0.6,
+              width: MediaQuery.of(context).size.width * 0.6,
             ),
           ],
         ),

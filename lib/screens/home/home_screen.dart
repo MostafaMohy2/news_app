@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/core/models/news_category.dart';
+import 'package:news_app/core/utils/build_context_extensions.dart';
 import 'package:news_app/core/utils/icons_extensions.dart';
+import 'package:news_app/core/utils/number_extensions.dart';
+import 'package:news_app/core/utils/widget_extensions.dart';
 import 'package:news_app/screens/home/tabs/home_tab.dart';
+import 'package:news_app/screens/home/tabs/news_tab.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String route = '/home';
@@ -18,22 +22,109 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        title: Text(
+          selectedCategory == null ? 'Home' : selectedCategory!.categoryName,
+        ),
         centerTitle: true,
         actions: [
           IconButton(onPressed: () {}, icon: Icons.search_rounded.toIcon),
         ],
       ),
-      drawer: Drawer(),
+      drawer: _drawer(),
       body: selectedCategory == null
-          ? HomeTab(
-              onCategoryClick: (category) {
-                setState(() {
-                  selectedCategory = category;
-                });
+          ? HomeTab(onCategoryClick: (category) => changeCategory(category))
+          : NewsTab(category: selectedCategory!),
+    );
+  }
+
+  void changeCategory(NewsCategory category) {
+    selectedCategory = category;
+    setState(() {});
+  }
+
+  Widget _drawer() {
+    return Drawer(
+      child: Column(
+        crossAxisAlignment: .start,
+        children: [
+          Container(
+            width: .infinity,
+            height: 240,
+            alignment: .center,
+            decoration: BoxDecoration(color: context.colorScheme.primary),
+            child: Text(
+              'News App',
+              style: context.text.titleLarge!.copyWith(
+                color: context.colorScheme.surface,
+              ),
+            ),
+          ),
+          TextButton(
+            onPressed: () {
+              selectedCategory = null;
+              context.pop();
+              setState(() {});
+            },
+            child: Row(
+              children: [
+                Icon(Icons.home_sharp, size: 32),
+                16.verticalSpace,
+                Text('Go to Home', style: context.text.titleLarge),
+              ],
+            ).allPadding(16),
+          ),
+          Divider(),
+          Text('Theme', style: context.text.titleLarge).symmetricPadding(16, 8),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 16),
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            decoration: BoxDecoration(
+              border: Border.all(width: 1, color: context.colorScheme.primary),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: DropdownButton<ThemeMode>(
+              items: [
+                DropdownMenuItem(value: ThemeMode.light, child: Text('Light')),
+                DropdownMenuItem(value: ThemeMode.dark, child: Text('Dark')),
+              ],
+              value: context.appConfigListenFalse.themeMode,
+              isExpanded: true,
+              borderRadius: BorderRadius.circular(16),
+              underline: SizedBox(),
+              onChanged: (mode) {
+                context.appConfigListenFalse.changeTheme(mode!);
               },
-            )
-          : const SizedBox(),
+            ),
+          ),
+          16.verticalSpace,
+          Divider(),
+          Text(
+            'Language',
+            style: context.text.titleLarge,
+          ).symmetricPadding(16, 8),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 16),
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            decoration: BoxDecoration(
+              border: Border.all(width: 1, color: context.colorScheme.primary),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: DropdownButton<String>(
+              items: [
+                DropdownMenuItem(value: 'en', child: Text('English')),
+                DropdownMenuItem(value: 'ar', child: Text('Arabic')),
+              ],
+              value: context.appConfigListenFalse.locale.languageCode,
+              isExpanded: true,
+              borderRadius: BorderRadius.circular(16),
+              underline: SizedBox(),
+              onChanged: (lang) {
+                //todo add Arabic to the app
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
