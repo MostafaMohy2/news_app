@@ -11,6 +11,11 @@ extension WidgetExtensions on Widget {
     padding: EdgeInsets.symmetric(horizontal: padding),
     child: this,
   );
+  Widget symmetricPadding(double horizontal, double vertical) => Padding(
+    padding: EdgeInsets.symmetric(horizontal: horizontal, vertical: vertical),
+    child: this,
+  );
+  
   Widget clip(double radius) => ClipRRect(
     borderRadius: BorderRadiusGeometry.circular(radius),
     child: this,

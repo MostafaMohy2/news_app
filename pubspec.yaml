@@ -39,6 +39,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   provider: ^6.1.5+1
   dio: ^5.11.1
+  cached_network_image: ^4.0.3
 
 dev_dependencies:
   flutter_test:
