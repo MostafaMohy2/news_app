@@ -155,7 +155,9 @@ class ArticleBottomShee extends StatelessWidget {
             Expanded(
               child: Text(
                 article.content ?? '',
-                style: TextStyle(color: Colors.black),
+                style: context.text.titleMedium!.copyWith(
+                  color: context.colorScheme.onPrimary
+                ),
                 textAlign: .start,
               ),
             ),
@@ -169,7 +171,7 @@ class ArticleBottomShee extends StatelessWidget {
                 );
               },
               style: FilledButton.styleFrom(
-                backgroundColor: context.colorScheme.secondary,
+                backgroundColor: context.colorScheme.onPrimary,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadiusGeometry.circular(8),
                 ),
