@@ -154,7 +154,7 @@ class ArticleBottomShee extends StatelessWidget {
             ),
             Expanded(
               child: Text(
-                article.description ?? '',
+                article.content ?? '',
                 style: TextStyle(color: Colors.black),
                 textAlign: .start,
               ),
