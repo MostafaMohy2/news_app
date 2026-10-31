@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(milliseconds: 400), () {
+    Future.delayed(Duration(seconds: 3), () {
       Navigator.pushReplacementNamed(context, HomeScreen.route);
     });
   }
@@ -30,14 +30,14 @@ class _SplashScreenState extends State<SplashScreen> {
             Expanded(
               child: Image.asset(
                 provider.themeMode == ThemeMode.dark
-                    ? AppAssets.logoLight
-                    : AppAssets.logoDark,
+                    ? AppAssets.logoDark
+                    : AppAssets.logoLight,
               ),
             ),
             Image.asset(
               provider.themeMode == ThemeMode.dark
-                  ? AppAssets.brandingLight
-                  : AppAssets.brandingDark,
+                  ? AppAssets.brandingDark
+                  : AppAssets.brandingLight,
               width: MediaQuery.of(context).size.width * 0.6,
             ),
           ],
