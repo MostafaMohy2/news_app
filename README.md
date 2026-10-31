@@ -170,6 +170,12 @@ assets/images/
 They are registered in `pubspec.yaml` and exposed through
 `lib/core/utils/app_assets.dart`.
 
+##🎥 Video Demo
+
+https://github.com/user-attachments/assets/77538f95-e3eb-4983-bb09-f05ad636e1cd
+
+---
+
 ## 📄 License
 
 No license has been specified yet. Add a license before redistributing this
