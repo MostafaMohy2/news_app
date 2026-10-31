@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/api/api_manager.dart';
 import 'package:news_app/core/models/news_category.dart';
+import 'package:news_app/core/models/sources_response.dart';
 import 'package:news_app/core/utils/build_context_extensions.dart';
 import 'package:news_app/core/utils/icons_extensions.dart';
 import 'package:news_app/core/utils/number_extensions.dart';
 import 'package:news_app/core/utils/widget_extensions.dart';
 import 'package:news_app/screens/home/tabs/home_tab.dart';
 import 'package:news_app/screens/home/tabs/news_tab.dart';
+
+import 'widgets/search_layout.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String route = '/home';
@@ -27,7 +31,15 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         centerTitle: true,
         actions: [
-          IconButton(onPressed: () {}, icon: Icons.search_rounded.toIcon),
+          Visibility(
+            visible: selectedCategory != null,
+            child: IconButton(
+              onPressed: () {
+                _openSearch();
+              },
+              icon: Icons.search_rounded.toIcon,
+            ),
+          ),
         ],
       ),
       drawer: _drawer(),
@@ -40,6 +52,24 @@ class _HomeScreenState extends State<HomeScreen> {
   void changeCategory(NewsCategory category) {
     selectedCategory = category;
     setState(() {});
+  }
+
+  Future<void> _openSearch() async {
+    final category = selectedCategory;
+    if (category == null) {
+      return;
+    }
+
+    final response = await ApiManager().getSources(category.id);
+    if (!mounted) {
+      return;
+    }
+
+    Navigator.pushNamed(
+      context,
+      SearchLayout.route,
+      arguments: response.sources ?? <Source>[],
+    );
   }
 
   Widget _drawer() {
