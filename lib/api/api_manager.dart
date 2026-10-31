@@ -33,4 +33,16 @@ class ApiManager {
 
     return ArticlesResponse.fromJson(response.data);
   }
+
+  Future<ArticlesResponse> searchArticles({
+    required String query,
+    required String sources,
+  }) async {
+    Response response = await dio.get(
+      '/v2/top-headlines',
+      queryParameters: {'q': query, 'sources': sources},
+    );
+
+    return ArticlesResponse.fromJson(response.data);
+  }
 }

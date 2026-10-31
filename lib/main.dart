@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/core/config/app_config.dart';
+import 'package:news_app/core/models/sources_response.dart';
 import 'package:news_app/core/theme/app_colors.dart';
 import 'package:news_app/core/theme/app_theme.dart';
 import 'package:news_app/core/l10n/app_localizations.dart';
+import 'package:news_app/screens/home/widgets/search_layout.dart';
 import 'package:news_app/screens/splash/splash_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -34,6 +36,10 @@ class MyApp extends StatelessWidget {
         routes: {
           SplashScreen.route: (_) => const SplashScreen(),
           HomeScreen.route: (_) => const HomeScreen(),
+          SearchLayout.route: (context) {
+            final arguments = ModalRoute.of(context)?.settings.arguments as List<Source>;
+            return SearchLayout(sources: arguments);
+          },
         },
         initialRoute: SplashScreen.route,
       ),

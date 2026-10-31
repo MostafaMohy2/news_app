@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class AppConfig extends ChangeNotifier {
   ThemeMode _themeMode = ThemeMode.dark;
   Locale _locale = const Locale('en');
@@ -19,6 +20,5 @@ class AppConfig extends ChangeNotifier {
     _locale = Locale(languageCode);
     notifyListeners();
   }
+  
 }
-
-typedef AppConfigProvider = AppConfig;
