@@ -172,7 +172,11 @@ They are registered in `pubspec.yaml` and exposed through
 
 ##🎥 Video Demo
 
-https://github.com/user-attachments/assets/77538f95-e3eb-4983-bb09-f05ad636e1cd
+
+
+https://github.com/user-attachments/assets/7d36f69e-e342-4033-a952-a27b51d3d8e3
+
+
 
 ---
 
